@@ -82,6 +82,7 @@ namespace Pharmacist.Core.NuGet
 
             _nugetFrameworks["uap10.0"] = new[] { FrameworkConstants.CommonFrameworks.UAP10, FrameworkConstants.CommonFrameworks.NetStandard20 };
             _nugetFrameworks["uap"] = new[] { FrameworkConstants.CommonFrameworks.UAP10, FrameworkConstants.CommonFrameworks.NetStandard20 };
+            _nugetFrameworks["uap10.0.19041"] = new[] { new NuGetFramework("UAP", new Version(10, 0, 19041, 0)), FrameworkConstants.CommonFrameworks.NetStandard20 };
             _nugetFrameworks["uap10.0.18362"] = new[] { new NuGetFramework("UAP", new Version(10, 0, 18362, 0)), FrameworkConstants.CommonFrameworks.NetStandard20 };
             _nugetFrameworks["uap10.0.17763"] = new[] { new NuGetFramework("UAP", new Version(10, 0, 17763, 0)), FrameworkConstants.CommonFrameworks.NetStandard20 };
             _nugetFrameworks["uap10.0.17134"] = new[] { new NuGetFramework("UAP", new Version(10, 0, 17134, 0)), FrameworkConstants.CommonFrameworks.NetStandard20 };
