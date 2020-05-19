@@ -1,3 +1,42 @@
+# Custom Reactui.Events
+The ReactiveUI.Events nuget package is not build for modern uwp application since it is stuc on UAP v10.0.16299. ReactiveUI.Events is nothing more then running the Pharmacist.Console application and serve it in an SKD version.   
+
+## Generate Event wrapper file with Pharmacist.Console
+[Pharmacist (Github)](https://github.com/reactiveui/Pharmacist) does not support a TargetFramework, only hardcoded. This version changed the hardcoded version of 10.0.16299 to 10.0.18362.   
+
+To run the Pharmacist.Console tool go to the root of this project and enter this command:
+
+```powershell
+PS F:\dev\ReactiveUiEvents4UAP\Pharmacist\Pharmacist\src\Pharmacist.Console> dotnet run generate-platform --platforms=uwp --output-path="F:/dev/ReactiveUiEvents4UAP/Pharmacist/Generated_Events_CS/" --output-prefix="Events_"
+```
+
+### Edit Framework version yourself 
+
+Change the version ```src/Pharmacist.Core/Extractors/PlatformExtractors/UWP.cs``` for uwp. When editing this, make sure the version is supported in the NuGetFrameworkHelper ```src/Pharmacist.Core/NuGet/NuGetFrameworkHelper.cs```
+
+## Add the SDKReferences when using ReactiveUI.Events (uwp) or the Pharmacist generated file
+
+ReactiveUI.Events does not add the neccesarry skd reverences (neither the Pharmacist generated files). Pharmacist generate wrappers of everything in the ```C:\Program Files (x86)\Windows Kits\10\UnionMetadata\10.0.18362.0\Windows.winmd```, so also the Extension SDKs in ```C:\Program Files (x86)\Windows Kits\10\Extension SDKs```. To prevent weird errors, add atlease the following Univeral Windows Extentions (according to the .csproj of ReactiveUI.Events):
+- WindowsDesktop
+- WindowsMobile   
+
+To to this either add this to your .csproj
+
+```xml
+  <ItemGroup>
+    <SDKReference Include="WindowsDesktop, Version=10.0.18362.0">
+      <Name>Windows Desktop Extensions for the UWP</Name>
+    </SDKReference>
+    <SDKReference Include="WindowsMobile, Version=10.0.18362.0">
+      <Name>Windows Mobile Extensions for the UWP</Name>
+    </SDKReference>
+  </ItemGroup>
+```
+
+or go in Visual Studio to your project -> righ click on References -> "Add reference..." -> Univeral Windows -> Extentions -> select WindowsMobile and WindowsDesktop with the correct version.
+## Add the Events_uwp.cs file to your uwp project file
+Just use it where ever you like
+
 [![Build Status](https://dev.azure.com/dotnet/ReactiveUI/_apis/build/status/Pharmacist-CI)](https://dev.azure.com/dotnet/ReactiveUI/_build/latest?definitionId=82) [![Code Coverage](https://codecov.io/gh/reactiveui/pharmacist/branch/master/graph/badge.svg)](https://codecov.io/gh/reactiveui/pharmacist)
 <a href="#backers">
         <img src="https://opencollective.com/reactiveui/backers/badge.svg">
