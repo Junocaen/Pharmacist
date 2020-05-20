@@ -2,7 +2,7 @@
   "profiles": {
     "UwpEventBuilder.Console": {
       "commandName": "Project",
-      "commandLineArgs": "generate-platform --platforms=\"uwp\"  --output-path=\"F:/dev/CollectionCollector\\CollectorCollector\\Pharmacist/\" --output-prefix=\"Events_\""
+      "commandLineArgs": "generate-platform --platforms=\"uwp\"  --output-path=\"F:\\dev\\CollectionCollector\\ReactiveUI.Events.UWP/\" --output-prefix=\"Events_\""
     },
     "EventBuilder.Console": {
       "commandName": "Project",
